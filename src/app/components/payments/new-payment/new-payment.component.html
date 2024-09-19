@@ -1,0 +1,80 @@
+<div class="container">
+  <mat-card class="example-card" appearance="outlined" class="form-content">
+    <mat-card-header>
+      <mat-card-title>New Payments</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <form [formGroup]="formGroup">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Date</mat-label>
+          <input matInput [matDatepicker]="datePicker" formControlName="date"/>
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+          <mat-datepicker #datePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Amount</mat-label>
+          <input matInput formControlName="amount" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type">
+           @for (type of paymentTypes; track $index) {
+            <mat-option [value]="type">
+              {{ type }}
+            </mat-option>
+          }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Uplaod</mat-label>
+           <button type="button" mat-icon-button matPrefix (click)="openFile.click()">
+            <mat-icon>attach_file</mat-icon>
+           </button>
+           <input matInput readonly formControlName="fileName">
+           <input type="file"  #openFile (change)="selectFile($event)" accept="application/pdf">
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+          <mat-label>Student Code</mat-label>
+          <input matInput formControlName="studentCode" placeholder="Enter student code" />
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" (click)="savePayment()">Save </button>
+        @if (showSpinner) {
+          <mat-spinner></mat-spinner>
+        }
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="example-card">
+    <mat-card-header>
+     <mat-card-title>
+      PDF
+     </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <pdf-viewer [src]="pdfUrlFile"
+              [render-text]="true"
+              [original-size]="true"
+              [rotation]="0"
+              [show-all]="true"
+              [fit-to-page]="true"
+              [zoom]="1"
+              [zoom-scale]="'page-width'"
+              [external-link-target]="'_blank'"
+              [autoresize]="true"
+              [show-borders]="false"
+              class="pdf-container"
+              (after-load-complete)="afterLoadComplete($event)"
+              style="width: 400px; height: 500px"
+      ></pdf-viewer>
+    </mat-card-content>
+  </mat-card>
+</div>

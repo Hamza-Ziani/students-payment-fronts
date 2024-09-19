@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+  @if (authService.isAutenticated == true) {
+    <button  mat-button  (click)="myDrawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  }
+  <span>Students</span>
+  <span class="example-spacer"></span>
+  <button mat-button [routerLink]="['/']"> Home</button>
+  <button mat-button [routerLink]="['/profile']">Profile</button>
+  <button mat-button [routerLink]="['/students']">Students</button>
+  <button mat-button [routerLink]="['/payments']">Payments</button>
+  <button mat-button [routerLink]="['/dashboard']">Dashboad</button>
+  <button *ngIf="authService.roles.includes('ADMIN')"  mat-button [matMenuTriggerFor]="menu">Imports</button>
+
+<mat-menu #menu>
+  <button mat-menu-item [routerLink]="['/loadStudents']">Load Students</button>
+  <button mat-menu-item [routerLink]="['/loadPayments']">Load Payments</button>
+</mat-menu>
+<button mat-button *ngIf="authService.isAutenticated == true" >{{authService.username}}</button>
+
+<button mat-raised-button color="warn" [routerLink]="['/login']">Login</button>
+
+<button mat-raised-button color="accent" (click)="logout()">Logout</button>
+<button mat-button *ngIf="authService.isAutenticated == true" >{{authService.username}}</button>
+</mat-toolbar>
+<mat-drawer-container >
+  <mat-drawer  #myDrawer mode="side" opened position="start" >
+    <mat-list *ngIf="authService.isAutenticated == true" >
+      <mat-list-item>
+        <button *ngIf="authService.roles.includes('ADMIN')" mat-button [routerLink]="['/students']">
+          <mat-icon>list</mat-icon>
+           Students</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button *ngIf="authService.roles.includes('ADMIN')" mat-button [routerLink]="['/payments']">
+          <mat-icon>list</mat-icon>
+           Payments</button>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content class="content">
+    <div style="min-height: 800px;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

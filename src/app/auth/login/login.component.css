@@ -1,0 +1,47 @@
+/* Background image for the container */
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../../../assets/images/back4.jpg');
+  background-size: cover;
+  background-position: center;
+  /* padding: 20px; */
+}
+
+/* Login card styling */
+.login-card {
+  width: 400px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Full-width form fields */
+.full-width {
+  width: 100%;
+}
+
+/* Button container to center the button */
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Mat-card title styling */
+mat-card-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Mat-card action buttons */
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+}

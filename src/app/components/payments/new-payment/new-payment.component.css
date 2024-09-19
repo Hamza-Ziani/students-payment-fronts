@@ -1,0 +1,28 @@
+mat-form-field{
+  display: block;
+
+}
+
+.container{
+  display: flex;
+}
+.example-card{
+  width: 50%;
+}
+.form-content{
+  width: 80%;
+}
+
+
+
+.mat-form-field {
+  margin-bottom: 16px; /* Adjust this value as needed */
+}
+
+.file-upload {
+  margin-bottom: 16px; /* Adjust this value as needed */
+}
+
+button {
+  margin-top: 16px; /* Adjust this value as needed */
+}
